@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Environment
+env/
+venv/
+.venv/
+*.env
+
+# Byte-compiled / cache
+*.egg-info/
+dist/
+build/
+
+# Docker
+*.dockerignore
+*.docker
+docker-compose.override.yml
+**/Dockerfile.*
+
+# VS Code / IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Jenkins
+jenkins_home/
