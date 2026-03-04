@@ -10,7 +10,7 @@ pipeline {
         stage('Install Dependencies') {
            
             steps {
-                 sh 'pip install --no-cache-dir -r requirements.txt'
+                sh 'pip install "--prefix=/tmp/pip_install" -r requirements.txt'
             }
         }
         stage('Check PATH') {
@@ -21,7 +21,8 @@ pipeline {
 
         stage('Install pytest') {
             steps {
-                sh 'pip install --no-cache-dir pytest' 
+                sh 'pip install --no-cache-dir --prefix=/tmp/pip_install pytest'
+                sh '/tmp/pip_install/bin/pytest' 
             }
 }
 
