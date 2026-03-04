@@ -9,10 +9,10 @@ pipeline {
         }
         stage('Install Dependencies') {
             agent {
-                docker { image 'python:3.9-alpine' }
+                docker { image 'simple-devops-app' }
             }
             steps {
-                sh 'pip install --prefix=/tmp/pip_install -r requirements.txt'
+                sh 'pip install --no-cache-dir -r requirements.txt'
             }
         }
         stage('Check PATH') {
@@ -23,17 +23,16 @@ pipeline {
 
         stage('Install pytest') {
             steps {
-                sh 'python -m pip install pytest'  // Instalează pytest direct
+                sh 'python3 -m pip install pytest'  // Instalează pytest direct
             }
 }
 
         stage('Run Tests') {
             agent {
-                docker { image 'python:3.9-alpine' }
+                docker { image 'simple-devops-app' }
             }
             steps {
-                sh 'export PATH=$PATH:/tmp/pip_install/bin'
-                sh 'pytest'
+                sh 'python3 -m pytest'
             }
         }
         stage('Build Docker Image') {
