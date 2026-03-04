@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/olaruionut01/simple-devops-project.git'
+                git branch: 'main', url: 'https://github.com/olaruionut01/simple-devops-project.git'
             }
         }
         stage('Install Dependencies') {
