@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.12-slim'
+            args '-u root:root -v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
@@ -25,7 +26,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t simple-devops-app .'
+                sh 'docker build -t simple-devops-app:latest .'
             }
         }
     }
