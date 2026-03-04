@@ -23,7 +23,7 @@ pipeline {
 
         stage('Install pytest') {
             steps {
-                sh 'pip install pytest'  // Instalează pytest direct
+                sh 'python3 -m pip install pytest'  // Instalează pytest direct
             }
 }
 
@@ -32,7 +32,8 @@ pipeline {
                 docker { image 'python:3.9-alpine' }
             }
             steps {
-                sh '/usr/local/bin/python3 -m pytest'
+                sh 'export PATH=$PATH:/tmp/pip_install/bin'
+                sh 'pytest'
             }
         }
         stage('Build Docker Image') {
