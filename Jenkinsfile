@@ -15,12 +15,17 @@ pipeline {
                 sh 'pip install --prefix=/tmp/pip_install -r requirements.txt'
             }
         }
+        stage('Check PATH') {
+            steps {
+                sh 'echo $PATH'  // Verifică calea PATH
+            }
+        }
         stage('Run Tests') {
             agent {
                 docker { image 'python:3.9-alpine' }
             }
             steps {
-                sh 'pytest'
+                sh 'python3 -m pytest'
             }
         }
         stage('Build Docker Image') {
