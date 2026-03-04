@@ -23,7 +23,7 @@ pipeline {
 
         stage('Install pytest') {
             steps {
-                sh 'python3 -m pip install pytest'  // Instalează pytest direct
+                sh 'python -m pip install pytest'  // Instalează pytest direct
             }
 }
 
