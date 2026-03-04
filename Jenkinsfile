@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.12-slim'
+        }
+    }
 
     stages {
         stage('Clone') {
@@ -10,13 +14,14 @@ pipeline {
         stage('Install Dependencies') {
            
             steps {
-                sh 'pip install "--prefix=/tmp/pip_install" -r requirements.txt'
+                sh '''
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
         
         
-
-      
 
         stage('Build Docker Image') {
             steps {
