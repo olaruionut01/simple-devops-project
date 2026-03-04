@@ -12,7 +12,7 @@ pipeline {
                 docker { image 'python:3.9-alpine' }
             }
             steps {
-                sh 'pip install --user -r requirements.txt'
+                sh 'pip install --prefix=/tmp/pip_install -r requirements.txt'
             }
         }
         stage('Run Tests') {
