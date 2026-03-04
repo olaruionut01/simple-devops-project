@@ -20,12 +20,19 @@ pipeline {
                 sh 'echo $PATH'  // Verifică calea PATH
             }
         }
+
+        stage('Install pytest') {
+            steps {
+                sh 'pip install pytest'  // Instalează pytest direct
+            }
+}
+
         stage('Run Tests') {
             agent {
                 docker { image 'python:3.9-alpine' }
             }
             steps {
-                sh 'python3 -m pytest'
+                sh '/usr/local/bin/python3 -m pytest'
             }
         }
         stage('Build Docker Image') {
